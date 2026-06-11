@@ -212,8 +212,10 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; }
 .grid__item { position: relative; overflow: hidden; border-radius: 16px; background: var(--panel); border: 1px solid var(--hair); }
 .grid__item--tall { grid-row: span 2; }
 .grid__item--wide { grid-column: span 2; }
-.grid__item img { transition: transform 0.7s var(--ease); }
-.grid__item:hover img { transform: scale(1.07); }
+.grid__item img, .grid__video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease); }
+.grid__item:hover img, .grid__item:hover .grid__video { transform: scale(1.07); }
+/* little "Reel" badge on the video tile */
+.grid__badge { position: absolute; top: 14px; left: 14px; z-index: 2; display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: rgba(7,8,9,0.55); padding: 6px 12px; border-radius: 100px; backdrop-filter: blur(6px); }
 .grid__item figcaption { position: absolute; inset: auto 0 0 0; padding: 26px 16px 16px; color: #fff; font-weight: 700; background: linear-gradient(transparent, rgba(7,8,9,0.85)); transform: translateY(8px); opacity: 0; transition: opacity 0.4s, transform 0.4s; }
 .grid__item:hover figcaption { opacity: 1; transform: translateY(0); }
 @media (max-width: 760px) { .grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 180px; } }
