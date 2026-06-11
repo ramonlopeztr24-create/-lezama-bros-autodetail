@@ -22,7 +22,17 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* settle on each section as you scroll so its effects are seen */
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 72px; /* clear the fixed nav */
+}
+/* each main section is a snap point; stop so fast scrolls can't skip sections */
+.hero, .process, .services, .ceramic, .gallery, .reviews, .band, .foot {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
 body {
   background: var(--ink); color: var(--white);
   font-family: "Inter", system-ui, sans-serif; line-height: 1.55;
