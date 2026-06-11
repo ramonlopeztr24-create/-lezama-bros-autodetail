@@ -116,8 +116,38 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; }
 .process__sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; }
 .process__inner { max-width: var(--maxw); margin: 0 auto; width: 100%; padding: 0 24px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(30px,5vw,72px); align-items: center; }
 .squeegee { position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; border: 1px solid var(--hair); box-shadow: 0 50px 120px -40px rgba(0,0,0,0.85); --wipe: 0%; }
-.squeegee__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; filter: saturate(1.14) contrast(1.06) brightness(1.04); }
-.squeegee__fog { position: absolute; inset: 0; pointer-events: none; clip-path: inset(var(--wipe) 0 0 0); background: linear-gradient(180deg, rgba(20,28,34,0.5), rgba(14,20,26,0.42)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.45'/%3E%3C/svg%3E"); background-size: cover, 320px 320px; backdrop-filter: blur(7px) brightness(0.9); -webkit-backdrop-filter: blur(7px) brightness(0.9); }
+.squeegee__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; filter: saturate(1.14) contrast(1.06) brightness(1.04); }
+/* MUD WALL — the part not yet wiped looks caked in mud; the squeegee reveals
+   the clean car from the top down (clip shrinks the mud as --wipe grows). */
+.squeegee__fog {
+  position: absolute; inset: 0; pointer-events: none;
+  clip-path: inset(var(--wipe) 0 0 0);
+  background:
+    /* darker mud clumps & splatters */
+    radial-gradient(circle at 18% 24%, rgba(54,38,20,0.9) 0 10px, transparent 16px),
+    radial-gradient(circle at 42% 62%, rgba(46,32,16,0.85) 0 14px, transparent 22px),
+    radial-gradient(circle at 70% 34%, rgba(58,40,22,0.8) 0 9px, transparent 16px),
+    radial-gradient(circle at 86% 70%, rgba(48,33,17,0.85) 0 13px, transparent 20px),
+    radial-gradient(circle at 60% 84%, rgba(40,28,14,0.9) 0 16px, transparent 24px),
+    radial-gradient(circle at 30% 88%, rgba(52,37,20,0.8) 0 11px, transparent 18px),
+    /* lighter dried-mud speckle (turbulence tinted brown) */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05 0.07' numOctaves='4' seed='9'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.42  0 0 0 0 0.31  0 0 0 0 0.17  0 0 0 1.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E"),
+    /* base mud coat */
+    linear-gradient(160deg, #6b4f30 0%, #50391f 45%, #382712 100%);
+  background-size: 240px 240px, 300px 300px, 200px 200px, 260px 260px, 320px 320px, 220px 220px, 260px 260px, cover;
+  background-blend-mode: multiply, multiply, multiply, multiply, multiply, multiply, normal, normal;
+}
+/* sludgy uneven lip right under the blade where mud is being pushed off */
+.squeegee__fog::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 26px;
+  background:
+    radial-gradient(8px 10px at 12% 60%, #3a2814 60%, transparent 62%),
+    radial-gradient(10px 12px at 32% 70%, #2e2010 60%, transparent 62%),
+    radial-gradient(7px 9px at 54% 55%, #422f18 60%, transparent 62%),
+    radial-gradient(11px 13px at 74% 72%, #2e2010 60%, transparent 62%),
+    radial-gradient(8px 10px at 90% 58%, #3a2814 60%, transparent 62%),
+    linear-gradient(180deg, rgba(40,28,14,0.95), transparent);
+}
 .squeegee__blade { position: absolute; left: 0; right: 0; top: var(--wipe); height: 16px; transform: translateY(-50%); pointer-events: none; }
 .squeegee__blade::before { content: ""; position: absolute; left: 4%; right: 4%; top: 50%; height: 5px; transform: translateY(-50%); border-radius: 4px; background: linear-gradient(180deg,#3a3f45,#15181c); box-shadow: 0 6px 16px rgba(0,0,0,0.6); }
 .squeegee__blade::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; transform: translateY(7px); background: linear-gradient(90deg, transparent, rgba(45,212,212,0.6), transparent); }
