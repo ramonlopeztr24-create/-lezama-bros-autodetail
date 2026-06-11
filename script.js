@@ -92,6 +92,111 @@ if (proc && baAuto && isDesktopProc) {
 
 
 /* ------------------------------------------------------------
+   WASH FX — power-wash spray + shampoo foam at the wipe seam.
+   Activates whenever the car is being cleaned (drag OR scroll),
+   so it works on both the hero slider and the process section.
+------------------------------------------------------------ */
+function attachWash(ba) {
+  if (!ba || reduceMotion) return;
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "ba__spray";
+  const handle = ba.querySelector(".ba__handle");
+  handle ? ba.insertBefore(canvas, handle) : ba.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+
+  let w, h, dpr;
+  const resize = () => {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = ba.clientWidth; h = ba.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  new ResizeObserver(resize).observe(ba);
+
+  const drops = [], foam = [];
+  let prevPos = null, activity = 0;
+  const seamX = () => (parseFloat(getComputedStyle(ba).getPropertyValue("--pos")) || 50) / 100 * w;
+
+  const spawn = (x, power) => {
+    // pressure-washer water jet, fanning toward the dirty (left) side
+    const n = Math.ceil(power * 4);
+    for (let i = 0; i < n; i++) {
+      const sp = 4 + Math.random() * 6;
+      drops.push({
+        x: x + (Math.random() - 0.5) * 8,
+        y: h * 0.16 + Math.random() * h * 0.12,
+        vx: -(sp * (0.5 + Math.random() * 0.8)),
+        vy: sp * 0.4 + Math.random() * 1.4,
+        life: 1, decay: 0.018 + Math.random() * 0.02,
+        r: 0.7 + Math.random() * 1.7,
+      });
+    }
+    // shampoo foam clusters clinging near the seam (a few bubbles at once = suds)
+    if (Math.random() < 0.8 * power) {
+      const cx = x - Math.random() * 30, cy = h * (0.28 + Math.random() * 0.55);
+      const bubbles = 2 + Math.floor(Math.random() * 3);
+      for (let b = 0; b < bubbles; b++) {
+        foam.push({
+          x: cx + (Math.random() - 0.5) * 26,
+          y: cy + (Math.random() - 0.5) * 22,
+          r: 7 + Math.random() * 16,
+          life: 1, decay: 0.008 + Math.random() * 0.008,
+          vy: -(0.1 + Math.random() * 0.45),
+        });
+      }
+    }
+  };
+
+  const loop = () => {
+    ctx.clearRect(0, 0, w, h);
+    const pos = seamX();
+    if (prevPos != null && Math.abs(pos - prevPos) > 0.3) activity = 1;
+    activity *= 0.9;
+    prevPos = pos;
+
+    const power = ba.classList.contains("dragging") ? 1 : activity;
+
+    if (power > 0.06) {
+      spawn(pos, power);
+      // misty halo at the nozzle
+      const g = ctx.createRadialGradient(pos, h * 0.16, 0, pos, h * 0.16, 46);
+      g.addColorStop(0, `rgba(205,245,255,${0.14 * power})`);
+      g.addColorStop(1, "rgba(205,245,255,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(pos - 46, h * 0.16 - 46, 92, 92);
+    }
+
+    // foam (draw under water so droplets read on top)
+    for (let i = foam.length - 1; i >= 0; i--) {
+      const f = foam[i];
+      f.y += f.vy; f.life -= f.decay;
+      if (f.life <= 0) { foam.splice(i, 1); continue; }
+      const a = Math.min(1, f.life * 1.4);
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 7); ctx.fillStyle = `rgba(248,252,255,${0.7 * a})`; ctx.fill();
+      // highlight for a soapy, glossy bubble look
+      ctx.beginPath(); ctx.arc(f.x - f.r * 0.32, f.y - f.r * 0.32, f.r * 0.4, 0, 7); ctx.fillStyle = `rgba(255,255,255,${0.85 * a})`; ctx.fill();
+    }
+
+    // water droplets
+    for (let i = drops.length - 1; i >= 0; i--) {
+      const d = drops[i];
+      d.x += d.vx; d.y += d.vy; d.vy += 0.17; d.life -= d.decay;
+      if (d.life <= 0 || d.y > h) { drops.splice(i, 1); continue; }
+      ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 7);
+      ctx.fillStyle = `rgba(195,240,250,${0.75 * d.life})`; ctx.fill();
+    }
+
+    requestAnimationFrame(loop);
+  };
+  loop();
+}
+attachWash(document.getElementById("ba"));
+attachWash(document.getElementById("baAuto"));
+
+
+/* ------------------------------------------------------------
    GIANT WORDMARK — scale font-size so it fills the footer width
    edge-to-edge without clipping (like the reference site).
 ------------------------------------------------------------ */
