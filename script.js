@@ -120,23 +120,23 @@ function attachWash(ba) {
   const seamX = () => (parseFloat(getComputedStyle(ba).getPropertyValue("--pos")) || 50) / 100 * w;
 
   const spawn = (x, power) => {
-    // pressure-washer water jet, fanning toward the dirty (left) side
-    const n = Math.ceil(power * 4);
+    // pressure-washer water jet, fanning toward the dirty (left) side — intense
+    const n = Math.ceil(power * 8);
     for (let i = 0; i < n; i++) {
-      const sp = 4 + Math.random() * 6;
+      const sp = 5 + Math.random() * 8;
       drops.push({
-        x: x + (Math.random() - 0.5) * 8,
-        y: h * 0.16 + Math.random() * h * 0.12,
-        vx: -(sp * (0.5 + Math.random() * 0.8)),
-        vy: sp * 0.4 + Math.random() * 1.4,
-        life: 1, decay: 0.018 + Math.random() * 0.02,
-        r: 0.7 + Math.random() * 1.7,
+        x: x + (Math.random() - 0.5) * 12,
+        y: h * 0.12 + Math.random() * h * 0.18,
+        vx: -(sp * (0.5 + Math.random() * 1.0)),
+        vy: sp * 0.35 + Math.random() * 1.8,
+        life: 1, decay: 0.016 + Math.random() * 0.02,
+        r: 0.8 + Math.random() * 2.1,
       });
     }
-    // shampoo foam clusters clinging near the seam (a few bubbles at once = suds)
-    if (Math.random() < 0.8 * power) {
-      const cx = x - Math.random() * 30, cy = h * (0.28 + Math.random() * 0.55);
-      const bubbles = 2 + Math.floor(Math.random() * 3);
+    // shampoo foam clusters clinging near the seam (lots of suds = flashy)
+    if (Math.random() < 1.0 * power) {
+      const cx = x - Math.random() * 34, cy = h * (0.26 + Math.random() * 0.58);
+      const bubbles = 3 + Math.floor(Math.random() * 4);
       for (let b = 0; b < bubbles; b++) {
         foam.push({
           x: cx + (Math.random() - 0.5) * 26,
@@ -160,12 +160,12 @@ function attachWash(ba) {
 
     if (power > 0.06) {
       spawn(pos, power);
-      // misty halo at the nozzle
-      const g = ctx.createRadialGradient(pos, h * 0.16, 0, pos, h * 0.16, 46);
-      g.addColorStop(0, `rgba(205,245,255,${0.14 * power})`);
+      // misty halo at the nozzle — bigger, brighter
+      const g = ctx.createRadialGradient(pos, h * 0.16, 0, pos, h * 0.16, 64);
+      g.addColorStop(0, `rgba(205,245,255,${0.2 * power})`);
       g.addColorStop(1, "rgba(205,245,255,0)");
       ctx.fillStyle = g;
-      ctx.fillRect(pos - 46, h * 0.16 - 46, 92, 92);
+      ctx.fillRect(pos - 64, h * 0.16 - 64, 128, 128);
     }
 
     // foam (draw under water so droplets read on top)

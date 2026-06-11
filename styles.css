@@ -149,6 +149,9 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; }
 .ba__clean img { filter: saturate(1.12) contrast(1.06) brightness(1.04); }
 .ba__dirty { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 .ba__dirty img { filter: saturate(0.55) brightness(0.84) contrast(0.86); }
+/* Real before/after photos: no simulated grime/filter — show the dirty shot as-is */
+.ba--real .ba__clean img { filter: saturate(1.06) contrast(1.04); }
+.ba--real .ba__dirty img { filter: none; }
 .ba__grime {
   position: absolute; inset: 0; pointer-events: none;
   background:
