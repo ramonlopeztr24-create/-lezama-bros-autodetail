@@ -4,15 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ============ SEO / SOCIAL ============ -->
-  <title>Lezama Bros Auto Detail — The New Standard in Mobile Detailing</title>
-  <meta name="description" content="Premium mobile auto detailing that comes to you, anywhere in Orange County. Restore. Maintain. Shine." />
-  <meta name="theme-color" content="#eef0f2" />
+  <title>Lezama Bros Auto Detail — Mobile Detailing, Orange County</title>
+  <meta name="description" content="Filthy to flawless, right in your driveway. Premium mobile auto detailing across Orange County. Restore. Maintain. Shine." />
+  <meta name="theme-color" content="#070809" />
   <meta property="og:title" content="Lezama Bros Auto Detail — Mobile Detailing, Orange County" />
-  <meta property="og:description" content="The new standard in mobile detailing. We come to you." />
+  <meta property="og:description" content="We pull up. Your ride glows. Drag to wash the mud off." />
   <meta property="og:type" content="website" />
 
-  <!-- ============ FONT — Inter (clean neo-grotesk, Swiss/premium) ============ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -32,41 +30,48 @@
     <a href="#hero" class="nav__brand">LEZAMA&nbsp;BROS</a>
     <div class="nav__right">
       <a href="sms:+17142046270" class="nav__link">Text Us</a>
-      <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--dark">Book Now</a>
+      <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--cyan">Book Now</a>
     </div>
   </header>
 
 
   <!-- =====================================================
-       1. HERO  — wash-reveal + shine + 3D parallax (Defender)
+       1. HERO — drag-to-clean (real Defender mud → clean)
   ====================================================== -->
   <section class="hero" id="hero">
     <div class="hero__head">
       <p class="hero__eyebrow"><span class="dot"></span> Mobile Auto Detailing · Orange County</p>
       <h1 class="hero__title">
-        <span class="line"><span>The new standard</span></span>
-        <span class="line"><span>in mobile detailing.</span></span>
+        <span class="line"><span>Filthy to flawless.</span></span>
+        <span class="line"><span>In your driveway.</span></span>
       </h1>
       <p class="hero__sub">
-        Premium detailing that comes to you — home, office, anywhere in the OC.
-        We pull up. Your car shines.
+        Premium mobile detailing across Orange County. We pull up — you flex.
       </p>
       <div class="hero__cta">
-        <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--dark btn--lg">Book Now</a>
+        <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--cyan btn--lg">Book Now</a>
         <a href="sms:+17142046270" class="btn btn--ghost btn--lg">Text Us</a>
       </div>
     </div>
 
-    <!-- 3D parallax showcar with wash-reveal + shine sweep -->
-    <div class="hero__stage" id="heroStage">
-      <figure class="showcar reveal-start" id="showcar">
-        <div class="showcar__frame">
-          <img class="showcar__img" src="images/defender.png" alt="Freshly detailed Land Rover Defender" />
-          <div class="showcar__shine" aria-hidden="true"></div>
-          <div class="showcar__gloss" aria-hidden="true"></div>
+    <!-- drag-to-clean: REAL Land Rover Defender before/after -->
+    <div class="hero__stage">
+      <div class="ba ba--real ba--def" id="ba">
+        <div class="ba__layer ba__clean">
+          <img src="images/defender-clean.png" alt="Freshly detailed Land Rover Defender" />
         </div>
-        <figcaption class="showcar__cap">Land&nbsp;Rover Defender · Full Detail + Ceramic</figcaption>
-      </figure>
+        <div class="ba__layer ba__dirty" id="baDirty">
+          <img src="images/defender-dirty.png" alt="Muddy Land Rover Defender before detailing" />
+        </div>
+        <span class="ba__tag ba__tag--before">Before</span>
+        <span class="ba__tag ba__tag--after">After</span>
+        <canvas class="ba__spray" id="baSpray" aria-hidden="true"></canvas>
+        <div class="ba__handle" id="baHandle">
+          <div class="ba__line"></div>
+          <button class="ba__grip" aria-label="Drag to wash the mud off"><span>‹</span><span>›</span></button>
+        </div>
+      </div>
+      <p class="hero__hint" id="baHint">Drag to wash the mud off ✨</p>
     </div>
 
     <a href="#process" class="hero__scrollcue">Scroll to see our process <span>↓</span></a>
@@ -74,61 +79,43 @@
 
 
   <!-- =====================================================
-       2. PROCESS  — squeegee reveal on scroll (BRZ) + steps
+       2. PROCESS — squeegee reveal on scroll (Defender) + steps
   ====================================================== -->
   <section class="process" id="process">
     <div class="process__sticky">
       <div class="process__inner">
-
-        <!-- pinned visual: squeegee wipes fog away as you scroll -->
         <div class="process__visual">
           <div class="squeegee" id="squeegee">
-            <img class="squeegee__img" src="images/brz.png" alt="Freshly detailed Subaru BRZ" />
+            <img class="squeegee__img" src="images/defender-clean.png" alt="Freshly detailed Land Rover Defender" />
             <div class="squeegee__fog" id="squeegeeFog" aria-hidden="true"></div>
             <div class="squeegee__blade" id="squeegeeBlade" aria-hidden="true"></div>
             <canvas class="squeegee__spray" id="squeegeeSpray" aria-hidden="true"></canvas>
             <span class="squeegee__hint" id="squeegeeHint">Scroll ↓</span>
           </div>
         </div>
-
-        <!-- steps -->
         <div class="process__steps">
           <p class="process__kicker">The Process</p>
           <h2 class="process__title">Filthy to flawless<br />in four moves.</h2>
           <ol class="steps">
-            <li class="step" data-step="0">
-              <span class="step__n">01</span>
-              <div><h3>Book or text</h3><p>Lock a time in seconds. No phone tag, no waiting room.</p></div>
-            </li>
-            <li class="step" data-step="1">
-              <span class="step__n">02</span>
-              <div><h3>We pull up</h3><p>Home, office, wherever you are. We bring water, power, everything.</p></div>
-            </li>
-            <li class="step" data-step="2">
-              <span class="step__n">03</span>
-              <div><h3>Wash · correct · protect</h3><p>Decon, paint correction, ceramic — done right by hand.</p></div>
-            </li>
-            <li class="step" data-step="3">
-              <span class="step__n">04</span>
-              <div><h3>You flex</h3><p>We hand you back a car that turns heads. Every time.</p></div>
-            </li>
+            <li class="step" data-step="0"><span class="step__n">01</span><div><h3>Book or text</h3><p>Lock a time in seconds. No phone tag, no waiting room.</p></div></li>
+            <li class="step" data-step="1"><span class="step__n">02</span><div><h3>We pull up</h3><p>Home, office, wherever you are. We bring water, power, everything.</p></div></li>
+            <li class="step" data-step="2"><span class="step__n">03</span><div><h3>Wash · correct · protect</h3><p>Decon, paint correction, ceramic — done right by hand.</p></div></li>
+            <li class="step" data-step="3"><span class="step__n">04</span><div><h3>You flex</h3><p>We hand you back a car that turns heads. Every time.</p></div></li>
           </ol>
         </div>
-
       </div>
     </div>
   </section>
 
 
   <!-- =====================================================
-       3. SERVICES  (light, big minimal rows)
+       3. SERVICES — big minimal rows
   ====================================================== -->
   <section class="section services" id="services">
     <div class="section__head">
       <p class="kicker">Services</p>
       <h2 class="section__h2">Everything your<br />ride needs.</h2>
     </div>
-
     <ul class="srv">
       <li class="srv__row reveal"><span class="srv__idx">01</span><span class="srv__name">Full Detail</span><span class="srv__desc">Top-to-bottom reset, inside and out.</span><span class="srv__arrow">→</span></li>
       <li class="srv__row reveal"><span class="srv__idx">02</span><span class="srv__name">Paint Correction</span><span class="srv__desc">Swirls &amp; scratches buffed to glass.</span><span class="srv__arrow">→</span></li>
@@ -141,12 +128,12 @@
 
 
   <!-- =====================================================
-       4. CERAMIC  — hydrophobic water beading demo (Urus)
+       4. CERAMIC — hydrophobic beading (Urus)
   ====================================================== -->
   <section class="ceramic" id="ceramic">
     <div class="ceramic__inner">
       <div class="ceramic__text reveal">
-        <p class="kicker kicker--light">Ceramic Coating</p>
+        <p class="kicker">Ceramic Coating</p>
         <h2 class="ceramic__h2">Water doesn't<br />stand a chance.</h2>
         <p class="ceramic__lead">Our ceramic coating locks in a deep gloss and makes your paint hydrophobic — water just beads up and rolls right off. Less washing, more shine, for years.</p>
         <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--cyan btn--lg">Protect my car</a>
@@ -162,7 +149,7 @@
 
 
   <!-- =====================================================
-       5. GALLERY  (light, minimal grid)
+       5. GALLERY
   ====================================================== -->
   <section class="section gallery" id="gallery">
     <div class="section__head section__head--row">
@@ -172,53 +159,27 @@
       </div>
       <p class="gallery__note">A few of the rides we've had the pleasure of restoring across Orange County.</p>
     </div>
-
     <div class="grid">
-      <figure class="grid__item grid__item--tall reveal">
-        <img src="images/urus.png" alt="Detailed white Lamborghini Urus" loading="lazy" />
-        <figcaption>Lamborghini Urus</figcaption>
-      </figure>
-      <figure class="grid__item reveal">
-        <img src="images/brz.png" alt="Detailed white Subaru BRZ" loading="lazy" />
-        <figcaption>Subaru BRZ</figcaption>
-      </figure>
-      <figure class="grid__item reveal">
-        <img src="images/defender.png" alt="Detailed silver Land Rover Defender" loading="lazy" />
-        <figcaption>Land Rover Defender</figcaption>
-      </figure>
-      <figure class="grid__item grid__item--wide reveal">
-        <img src="images/urus2.png" alt="Lamborghini Urus front detail" loading="lazy" />
-        <figcaption>Lamborghini Urus</figcaption>
-      </figure>
+      <figure class="grid__item grid__item--tall reveal"><img src="images/urus.png" alt="Detailed white Lamborghini Urus" loading="lazy" /><figcaption>Lamborghini Urus</figcaption></figure>
+      <figure class="grid__item reveal"><img src="images/brz.png" alt="Detailed white Subaru BRZ" loading="lazy" /><figcaption>Subaru BRZ</figcaption></figure>
+      <figure class="grid__item reveal"><img src="images/defender-clean.png" alt="Detailed silver Land Rover Defender" loading="lazy" /><figcaption>Land Rover Defender</figcaption></figure>
+      <figure class="grid__item grid__item--wide reveal"><img src="images/urus2.png" alt="Lamborghini Urus front detail" loading="lazy" /><figcaption>Lamborghini Urus</figcaption></figure>
     </div>
   </section>
 
 
   <!-- =====================================================
-       6. REVIEWS  (light, big quotes)
+       6. REVIEWS
   ====================================================== -->
   <section class="section reviews" id="reviews">
     <div class="section__head">
       <p class="kicker">Reviews</p>
       <h2 class="section__h2">Five stars,<br />no exceptions.</h2>
     </div>
-
     <div class="reviews__grid">
-      <article class="review reveal">
-        <div class="review__stars">★★★★★</div>
-        <p class="review__text">"Don't let these 2 young brothers fool you. Alex and his brother are TOP notch — extremely meticulous, show up on time, extremely professional and polite."</p>
-        <p class="review__name">David Vu <span>· Google</span></p>
-      </article>
-      <article class="review reveal">
-        <div class="review__stars">★★★★★</div>
-        <p class="review__text">"Alex did an awesome job! Very thorough — made it look spotless. On time, professional, and affordable. Would definitely hire again!"</p>
-        <p class="review__name">Maribel Fernandez <span>· Google</span></p>
-      </article>
-      <article class="review reveal">
-        <div class="review__stars">★★★★★</div>
-        <p class="review__text">"Alex and Eric not only fit us into their schedule, but took care of tiny details. We will only use this company from now on!"</p>
-        <p class="review__name">Leslie Cannata <span>· Google</span></p>
-      </article>
+      <article class="review reveal"><div class="review__stars">★★★★★</div><p class="review__text">"Don't let these 2 young brothers fool you. Alex and his brother are TOP notch — extremely meticulous, show up on time, extremely professional and polite."</p><p class="review__name">David Vu <span>· Google</span></p></article>
+      <article class="review reveal"><div class="review__stars">★★★★★</div><p class="review__text">"Alex did an awesome job! Very thorough — made it look spotless. On time, professional, and affordable. Would definitely hire again!"</p><p class="review__name">Maribel Fernandez <span>· Google</span></p></article>
+      <article class="review reveal"><div class="review__stars">★★★★★</div><p class="review__text">"Alex and Eric not only fit us into their schedule, but took care of tiny details. We will only use this company from now on!"</p><p class="review__name">Leslie Cannata <span>· Google</span></p></article>
     </div>
   </section>
 
@@ -230,41 +191,33 @@
     <div class="band__col reveal">
       <p class="kicker">Service Area</p>
       <h3 class="band__h3">All over Orange County.</h3>
-      <ul class="band__cities">
-        <li>Huntington Beach</li><li>Newport Beach</li><li>Costa Mesa</li><li>Irvine</li>
-        <li>Fountain Valley</li><li>Westminster</li><li>Santa Ana</li>
-      </ul>
+      <ul class="band__cities"><li>Huntington Beach</li><li>Newport Beach</li><li>Costa Mesa</li><li>Irvine</li><li>Fountain Valley</li><li>Westminster</li><li>Santa Ana</li></ul>
       <p class="band__note">Not listed? Text us — if you're in the OC, we've probably got you.</p>
     </div>
     <div class="band__col reveal">
       <p class="kicker">Payments</p>
       <h3 class="band__h3">Pay however you want.</h3>
-      <ul class="band__pay">
-        <li>Visa</li><li>Mastercard</li><li>Amex</li><li>Discover</li><li>Cash</li><li>Afterpay</li><li>Contactless</li>
-      </ul>
+      <ul class="band__pay"><li>Visa</li><li>Mastercard</li><li>Amex</li><li>Discover</li><li>Cash</li><li>Afterpay</li><li>Contactless</li></ul>
       <p class="band__note"><strong>$25 deposit</strong> holds your spot (non-refundable).</p>
     </div>
   </section>
 
 
   <!-- =====================================================
-       8. FOOTER  (dark, big link rows + GIANT wordmark)
+       8. FOOTER — big links + GIANT wordmark
   ====================================================== -->
   <footer class="foot" id="contact">
     <div class="foot__cta">
       <p class="foot__kicker">Ready when you are</p>
       <h2 class="foot__title">Let's make<br />it shine.</h2>
     </div>
-
     <div class="foot__links">
       <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="foot__link"><span>Book Now</span><span class="foot__arrow">→</span></a>
       <a href="tel:+17142046270" class="foot__link"><span>Call (714) 204-6270</span><span class="foot__arrow">→</span></a>
       <a href="sms:+17142046270" class="foot__link"><span>Text Us</span><span class="foot__arrow">→</span></a>
       <a href="https://instagram.com/lezamabros.autodetail" target="_blank" rel="noopener" class="foot__link"><span>Instagram</span><span class="foot__arrow">→</span></a>
     </div>
-
     <div class="foot__wordmark" aria-hidden="true">LEZAMA BROS</div>
-
     <div class="foot__meta">
       <span>© 2026 Lezama Bros Auto Detail</span>
       <span>Huntington Beach · Orange County, CA</span>
@@ -272,10 +225,7 @@
     </div>
   </footer>
 
-
-  <!-- Sticky mobile CTA -->
   <a href="sms:+17142046270" class="sticky-text">Text to Book</a>
-
   <script src="script.js"></script>
 </body>
 </html>
