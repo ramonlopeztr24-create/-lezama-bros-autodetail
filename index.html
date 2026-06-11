@@ -5,34 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ============ SEO / SOCIAL ============ -->
-  <title>Lezama Bros Auto Detail | Premium Mobile Car Detailing — Orange County</title>
-  <meta name="description" content="Premium mobile auto detailing in Huntington Beach & all of Orange County. We bring the detail shop to you. Restore. Maintain. Shine." />
-  <meta name="theme-color" content="#0A0A0A" />
+  <title>Lezama Bros Auto Detail | Mobile Detailing — Orange County</title>
+  <meta name="description" content="Filthy to flawless, right in your driveway. Premium mobile auto detailing across Orange County. Drag the slider and see what we do." />
+  <meta name="theme-color" content="#08090A" />
   <meta property="og:title" content="Lezama Bros Auto Detail — Mobile Detailing in Orange County" />
-  <meta property="og:description" content="We bring the detail shop to you. Premium mobile auto detailing across Orange County." />
+  <meta property="og:description" content="We pull up. Your ride glows. Premium mobile auto detailing across Orange County." />
   <meta property="og:type" content="website" />
 
-  <!-- ============ FONTS ============ -->
+  <!-- ============ FONTS — Anton (automotive display) + Inter (body) ============ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- Cursor water-droplet trail layer (desktop only, filled by JS) -->
+  <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
 
   <!-- =====================================================
        NAV
   ====================================================== -->
   <header class="nav" id="nav">
     <a href="#hero" class="nav__logo">
-      LEZAMA<span>BROS</span>
+      <span class="chrome-mini">LEZAMA BROS</span>
+      <small>AUTO DETAIL</small>
     </a>
     <nav class="nav__links">
       <a href="#services">Services</a>
-      <a href="#how">How it works</a>
-      <a href="#area">Service Area</a>
-      <a href="#gallery">Our Work</a>
+      <a href="#how">How</a>
+      <a href="#area">Area</a>
+      <a href="#gallery">Work</a>
       <a href="#reviews">Reviews</a>
     </nav>
     <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Book Now</a>
@@ -40,43 +44,59 @@
 
 
   <!-- =====================================================
-       1. HERO
+       1. HERO  —  drag-to-clean before/after slider
   ====================================================== -->
   <section class="hero" id="hero">
-    <!-- Background car image -->
-    <div class="hero__bg" aria-hidden="true"></div>
-    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero__glow" aria-hidden="true"></div>
 
-    <!-- Animated water-spray / pressure-washer canvas -->
-    <canvas class="hero__spray" id="spray" aria-hidden="true"></canvas>
-
-    <!-- Dripping droplets along the bottom edge -->
-    <div class="hero__drips" id="drips" aria-hidden="true"></div>
-
-    <div class="hero__content reveal">
-      <p class="hero__eyebrow">Mobile Auto Detailing · Orange County</p>
+    <div class="hero__copy">
+      <p class="hero__eyebrow"><span class="dot"></span> Mobile Detailing · Orange County</p>
       <h1 class="hero__title">
-        We Bring the<br /><span class="shine">Detail Shop</span> to You
+        Dirt doesn't<br />stand a <span class="chrome">chance.</span>
       </h1>
       <p class="hero__sub">
-        Premium mobile auto detailing in Orange County.
-        <strong>Restore. Maintain. Shine.</strong>
+        Filthy to flawless — right in your driveway. We pull up, you flex.
       </p>
       <div class="hero__cta">
         <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Book Now</a>
-        <a href="sms:+17142046270" class="btn btn--outline btn--lg">Text Us</a>
+        <a href="sms:+17142046270" class="btn btn--chrome btn--lg">Text Us</a>
       </div>
-      <p class="hero__tag">Restore <span>|</span> Maintain <span>|</span> Shine</p>
+      <p class="hero__tagline">RESTORE <i>/</i> MAINTAIN <i>/</i> SHINE</p>
     </div>
 
-    <div class="hero__scroll" aria-hidden="true">
-      <span></span>
+    <!-- The star of the show: drag-to-clean -->
+    <div class="hero__stage">
+      <div class="ba" id="ba">
+        <!-- CLEAN layer (bottom, always full) -->
+        <div class="ba__layer ba__clean">
+          <img src="images/brz.png" alt="Freshly detailed car" />
+          <span class="ba__tag ba__tag--after">AFTER ✨</span>
+        </div>
+
+        <!-- DIRTY layer (top, clipped by handle) -->
+        <div class="ba__layer ba__dirty" id="baDirty">
+          <img src="images/brz.png" alt="Dirty car before detailing" />
+          <div class="ba__grime" aria-hidden="true"></div>
+          <span class="ba__tag ba__tag--before">BEFORE</span>
+        </div>
+
+        <!-- Draggable handle -->
+        <div class="ba__handle" id="baHandle">
+          <div class="ba__line"></div>
+          <button class="ba__grip" aria-label="Drag to clean the car">
+            <span>‹</span><span>›</span>
+          </button>
+        </div>
+      </div>
+      <p class="hero__hint" id="baHint">👆 Drag to detail it yourself</p>
     </div>
+
+    <div class="hero__scroll" aria-hidden="true"><span></span></div>
   </section>
 
 
   <!-- =====================================================
-       STATS / COUNTER STRIP
+       STATS  —  speedometer-style counters
   ====================================================== -->
   <section class="stats">
     <div class="stats__item reveal">
@@ -84,93 +104,106 @@
       <span class="stats__label">Cars Detailed</span>
     </div>
     <div class="stats__item reveal">
-      <span class="stats__num" data-count="5" data-suffix="★">0</span>
+      <span class="stats__num" data-count="100" data-suffix="%">0</span>
+      <span class="stats__label">We Come to You</span>
+    </div>
+    <div class="stats__item reveal">
+      <span class="stats__num" data-count="5" data-suffix="★" data-decimals="1">0</span>
       <span class="stats__label">Star Rated</span>
     </div>
     <div class="stats__item reveal">
-      <span class="stats__num" data-count="100" data-suffix="%">0</span>
-      <span class="stats__label">Mobile · We Come to You</span>
-    </div>
-    <div class="stats__item reveal">
-      <span class="stats__num" data-count="2" data-suffix=" Bros">0</span>
-      <span class="stats__label">Owner Operated</span>
+      <span class="stats__num" data-count="2" data-suffix="">0</span>
+      <span class="stats__label">Brothers, One Mission</span>
     </div>
   </section>
 
 
   <!-- =====================================================
-       2. SERVICES
+       2. SERVICES  —  cards that DEMO the service on hover
   ====================================================== -->
   <section class="section services" id="services">
     <div class="section__head reveal">
-      <p class="kicker">What We Do</p>
-      <h2>Detailing done <span class="accent">right.</span></h2>
-      <p class="section__lead">Full-service detailing for everything from daily drivers to exotics — done at your home, office, or anywhere in the OC.</p>
+      <p class="kicker">// What We Do</p>
+      <h2>Pick your <span class="accent">glow-up.</span></h2>
+      <p class="section__lead">Daily driver or six-figure exotic — we treat it like it's ours. Hover a card and see the magic.</p>
     </div>
 
     <div class="cards">
-      <!-- Each card: icon + title + 1-line description -->
+      <!-- Full Detail -->
       <article class="card reveal">
         <div class="card__icon">🚗</div>
         <h3>Full Detail</h3>
-        <p>Top-to-bottom interior &amp; exterior restoration that makes it feel brand new.</p>
+        <p>Top-to-bottom reset, inside and out. Feels brand new again.</p>
       </article>
-      <article class="card reveal">
-        <div class="card__icon">✨</div>
+
+      <!-- Paint Correction — swirls buff out on hover -->
+      <article class="card card--swirl reveal">
+        <div class="card__swirl" aria-hidden="true"></div>
+        <div class="card__icon card__icon--spin">🌀</div>
         <h3>Paint Correction</h3>
-        <p>Remove swirls, scratches &amp; oxidation to bring back a flawless, glassy finish.</p>
+        <p>Swirls, scratches &amp; haze — buffed out to a glassy finish.</p>
       </article>
-      <article class="card reveal">
+
+      <!-- Ceramic Coating — water beads roll off on hover -->
+      <article class="card card--ceramic reveal">
+        <div class="card__beads" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
         <div class="card__icon">🛡️</div>
         <h3>Ceramic Coating</h3>
-        <p>Long-lasting protection &amp; deep gloss that shields your paint for years.</p>
+        <p>Years of protection &amp; gloss. Water just beads up and rolls off.</p>
       </article>
+
+      <!-- Odor Removal -->
       <article class="card reveal">
         <div class="card__icon">🌬️</div>
         <h3>Odor Removal</h3>
-        <p>Eliminate smoke, pet &amp; food odors at the source — not just cover them up.</p>
+        <p>Smoke, pets, that gym bag — gone at the source. Fresh again.</p>
       </article>
+
+      <!-- Interior Deep Clean -->
       <article class="card reveal">
         <div class="card__icon">🧼</div>
         <h3>Interior Deep Clean</h3>
-        <p>Shampoo, steam &amp; extraction for spotless seats, carpets &amp; every crevice.</p>
+        <p>Steam, shampoo &amp; extraction. Every crumb &amp; crevice handled.</p>
       </article>
+
+      <!-- Wash & Vacuum -->
       <article class="card reveal">
         <div class="card__icon">💧</div>
         <h3>Wash &amp; Vacuum</h3>
-        <p>The perfect maintenance wash to keep your ride fresh between full details.</p>
+        <p>The perfect maintenance refresh to keep it crispy between details.</p>
       </article>
     </div>
   </section>
 
 
   <!-- =====================================================
-       3. HOW IT WORKS  ("We Come to You")
+       3. HOW IT WORKS
   ====================================================== -->
   <section class="section how" id="how">
     <div class="section__head reveal">
-      <p class="kicker">The Easy Part</p>
-      <h2>We come <span class="accent">to you.</span></h2>
-      <p class="section__lead">No drop-offs. No waiting rooms. Just a flawless car wherever you are.</p>
+      <p class="kicker">// Stupid Easy</p>
+      <h2>Three taps to a <span class="accent">clean ride.</span></h2>
     </div>
 
     <div class="steps">
       <div class="step reveal">
-        <span class="step__num">1</span>
-        <h3>Book online or text</h3>
-        <p>Pick a time in seconds — online or by text. Easy.</p>
+        <span class="step__num">01</span>
+        <h3>Book or text</h3>
+        <p>Lock a time in seconds. No phone tag.</p>
       </div>
       <div class="step__line" aria-hidden="true"></div>
       <div class="step reveal">
-        <span class="step__num">2</span>
-        <h3>We come to your location</h3>
-        <p>Home, office, anywhere in the OC. We bring everything.</p>
+        <span class="step__num">02</span>
+        <h3>We pull up</h3>
+        <p>Home, work, wherever. We bring it all.</p>
       </div>
       <div class="step__line" aria-hidden="true"></div>
       <div class="step reveal">
-        <span class="step__num">3</span>
-        <h3>Your car comes out flawless</h3>
-        <p>Sit back. We hand you back a showroom-ready ride.</p>
+        <span class="step__num">03</span>
+        <h3>You flex</h3>
+        <p>Hand you back a car that turns heads.</p>
       </div>
     </div>
   </section>
@@ -181,8 +214,9 @@
   ====================================================== -->
   <section class="section area" id="area">
     <div class="area__inner reveal">
-      <p class="kicker">Where We Roll</p>
-      <h2>Proudly serving <span class="accent">Huntington Beach</span><br />&amp; all of Orange County</h2>
+      <p class="kicker">// Where We Roll</p>
+      <h2>All over <span class="accent">Orange County.</span></h2>
+      <p class="area__lead">Based in Huntington Beach, rolling out to:</p>
       <ul class="area__cities">
         <li>Huntington Beach</li>
         <li>Newport Beach</li>
@@ -192,19 +226,18 @@
         <li>Westminster</li>
         <li>Santa Ana</li>
       </ul>
-      <p class="area__note">Not on the list? Text us — if you're in the OC, we've probably got you.</p>
+      <p class="area__note">Not listed? Text us — if you're in the OC, we've probably got you.</p>
     </div>
   </section>
 
 
   <!-- =====================================================
-       5. GALLERY / OUR WORK
+       5. GALLERY
   ====================================================== -->
   <section class="section gallery" id="gallery">
     <div class="section__head reveal">
-      <p class="kicker">Our Work</p>
-      <h2>The cars speak <span class="accent">for us.</span></h2>
-      <p class="section__lead">A few of the rides we've had the pleasure of making shine.</p>
+      <p class="kicker">// Our Work</p>
+      <h2>The cars do the <span class="accent">talking.</span></h2>
     </div>
 
     <div class="grid">
@@ -233,25 +266,25 @@
   ====================================================== -->
   <section class="section reviews" id="reviews">
     <div class="section__head reveal">
-      <p class="kicker">Don't Take Our Word</p>
-      <h2>5 stars, <span class="accent">every time.</span></h2>
+      <p class="kicker">// Real Talk</p>
+      <h2>Five stars, <span class="accent">no exceptions.</span></h2>
     </div>
 
     <div class="reviews__grid">
       <article class="review reveal">
         <div class="review__stars">★★★★★</div>
         <p class="review__text">"Don't let these 2 young brothers fool you. Alex and his brother are TOP notch... extremely meticulous, show up on time, extremely professional and polite."</p>
-        <p class="review__name">— David Vu</p>
+        <p class="review__name">David Vu <span>· Google</span></p>
       </article>
       <article class="review reveal">
         <div class="review__stars">★★★★★</div>
         <p class="review__text">"Alex did an awesome job! Very thorough... made it look spotless. On time, professional, and affordable. Would definitely hire again!"</p>
-        <p class="review__name">— Maribel Fernandez</p>
+        <p class="review__name">Maribel Fernandez <span>· Google</span></p>
       </article>
       <article class="review reveal">
         <div class="review__stars">★★★★★</div>
         <p class="review__text">"Alex and Eric not only fit us into their schedule, but took care of tiny details. We will only use this company from now on!"</p>
-        <p class="review__name">— Leslie Cannata</p>
+        <p class="review__name">Leslie Cannata <span>· Google</span></p>
       </article>
     </div>
   </section>
@@ -262,8 +295,8 @@
   ====================================================== -->
   <section class="section payment" id="payment">
     <div class="payment__inner reveal">
-      <p class="kicker">Easy &amp; Flexible</p>
-      <h2>Pay your <span class="accent">way.</span></h2>
+      <p class="kicker">// Easy Money</p>
+      <h2>Pay however you <span class="accent">want.</span></h2>
       <ul class="payment__methods">
         <li>Visa</li>
         <li>Mastercard</li>
@@ -274,28 +307,28 @@
         <li>Contactless</li>
       </ul>
       <p class="payment__note">
-        <span class="payment__deposit">$25 non-refundable deposit</span> required to hold your spot.
+        <span class="payment__deposit">$25 deposit</span> holds your spot (non-refundable).
       </p>
     </div>
   </section>
 
 
   <!-- =====================================================
-       8. BOOKING / CONTACT (CTA)
+       8. CONTACT / CTA
   ====================================================== -->
   <section class="section contact" id="contact">
     <div class="contact__inner reveal">
-      <p class="kicker">Ready When You Are</p>
-      <h2>Let's make it <span class="accent">shine.</span></h2>
-      <p class="contact__lead">Book online, give us a call, or shoot us a text. We'll bring the detail shop to your driveway.</p>
+      <p class="kicker">// Let's Go</p>
+      <h2>Ready to make it <span class="chrome">shine?</span></h2>
+      <p class="contact__lead">Book online, call, or text. We'll bring the detail shop to your driveway.</p>
 
       <div class="contact__cta">
         <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Book Now</a>
-        <a href="tel:+17142046270" class="btn btn--outline btn--lg">Call (714) 204-6270</a>
+        <a href="tel:+17142046270" class="btn btn--chrome btn--lg">Call (714) 204-6270</a>
       </div>
 
       <a href="https://instagram.com/lezamabros.autodetail" target="_blank" rel="noopener" class="contact__ig">
-        <span class="contact__ig-icon">📷</span> @lezamabros.autodetail
+        📷 @lezamabros.autodetail
       </a>
     </div>
   </section>
@@ -305,19 +338,15 @@
        FOOTER
   ====================================================== -->
   <footer class="footer">
-    <div class="footer__brand">LEZAMA BROS <span>AUTO DETAIL</span></div>
-    <p class="footer__tag">Restore | Maintain | Shine</p>
+    <div class="footer__brand chrome-mini">LEZAMA BROS</div>
+    <p class="footer__tag">Restore / Maintain / Shine</p>
     <p class="footer__meta">Huntington Beach, CA · Serving all of Orange County · Owner operated by Alex &amp; Eric</p>
     <p class="footer__copy">© 2026 Lezama Bros Auto Detail. All rights reserved.</p>
   </footer>
 
 
-  <!-- =====================================================
-       STICKY MOBILE "TEXT TO BOOK" BUTTON
-  ====================================================== -->
-  <a href="sms:+17142046270" class="sticky-text">
-    <span class="sticky-text__icon">💬</span> Text to Book
-  </a>
+  <!-- Sticky mobile "Text to Book" -->
+  <a href="sms:+17142046270" class="sticky-text">💬 Text to Book</a>
 
   <script src="script.js"></script>
 </body>
