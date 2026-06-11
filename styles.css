@@ -93,9 +93,9 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; }
 .ba--real .ba__dirty img { filter: none; }
 .ba__dirty { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 
-/* Defender pair has different framing — nudge each layer so the SUV lines up */
-.ba--def .ba__clean img { object-position: 18% 60%; transform: scale(1.42); transform-origin: 22% 60%; }
-.ba--def .ba__dirty img { object-position: 50% 52%; transform: scale(1.0); }
+/* Defender pair is matched framing — same crop on both layers so it aligns */
+.ba--def .ba__clean img,
+.ba--def .ba__dirty img { object-position: 50% 56%; transform: none; }
 
 .ba__tag { position: absolute; top: 16px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; backdrop-filter: blur(6px); z-index: 4; }
 .ba__tag--before { left: 16px; background: rgba(7,8,9,0.6); color: #fff; }
