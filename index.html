@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============ SEO / SOCIAL ============ -->
+  <title>Lezama Bros Auto Detail | Premium Mobile Car Detailing — Orange County</title>
+  <meta name="description" content="Premium mobile auto detailing in Huntington Beach & all of Orange County. We bring the detail shop to you. Restore. Maintain. Shine." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta property="og:title" content="Lezama Bros Auto Detail — Mobile Detailing in Orange County" />
+  <meta property="og:description" content="We bring the detail shop to you. Premium mobile auto detailing across Orange County." />
+  <meta property="og:type" content="website" />
+
+  <!-- ============ FONTS ============ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- =====================================================
+       NAV
+  ====================================================== -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__logo">
+      LEZAMA<span>BROS</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#area">Service Area</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Book Now</a>
+  </header>
+
+
+  <!-- =====================================================
+       1. HERO
+  ====================================================== -->
+  <section class="hero" id="hero">
+    <!-- Background car image -->
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <!-- Animated water-spray / pressure-washer canvas -->
+    <canvas class="hero__spray" id="spray" aria-hidden="true"></canvas>
+
+    <!-- Dripping droplets along the bottom edge -->
+    <div class="hero__drips" id="drips" aria-hidden="true"></div>
+
+    <div class="hero__content reveal">
+      <p class="hero__eyebrow">Mobile Auto Detailing · Orange County</p>
+      <h1 class="hero__title">
+        We Bring the<br /><span class="shine">Detail Shop</span> to You
+      </h1>
+      <p class="hero__sub">
+        Premium mobile auto detailing in Orange County.
+        <strong>Restore. Maintain. Shine.</strong>
+      </p>
+      <div class="hero__cta">
+        <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Book Now</a>
+        <a href="sms:+17142046270" class="btn btn--outline btn--lg">Text Us</a>
+      </div>
+      <p class="hero__tag">Restore <span>|</span> Maintain <span>|</span> Shine</p>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span></span>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       STATS / COUNTER STRIP
+  ====================================================== -->
+  <section class="stats">
+    <div class="stats__item reveal">
+      <span class="stats__num" data-count="500" data-suffix="+">0</span>
+      <span class="stats__label">Cars Detailed</span>
+    </div>
+    <div class="stats__item reveal">
+      <span class="stats__num" data-count="5" data-suffix="★">0</span>
+      <span class="stats__label">Star Rated</span>
+    </div>
+    <div class="stats__item reveal">
+      <span class="stats__num" data-count="100" data-suffix="%">0</span>
+      <span class="stats__label">Mobile · We Come to You</span>
+    </div>
+    <div class="stats__item reveal">
+      <span class="stats__num" data-count="2" data-suffix=" Bros">0</span>
+      <span class="stats__label">Owner Operated</span>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       2. SERVICES
+  ====================================================== -->
+  <section class="section services" id="services">
+    <div class="section__head reveal">
+      <p class="kicker">What We Do</p>
+      <h2>Detailing done <span class="accent">right.</span></h2>
+      <p class="section__lead">Full-service detailing for everything from daily drivers to exotics — done at your home, office, or anywhere in the OC.</p>
+    </div>
+
+    <div class="cards">
+      <!-- Each card: icon + title + 1-line description -->
+      <article class="card reveal">
+        <div class="card__icon">🚗</div>
+        <h3>Full Detail</h3>
+        <p>Top-to-bottom interior &amp; exterior restoration that makes it feel brand new.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon">✨</div>
+        <h3>Paint Correction</h3>
+        <p>Remove swirls, scratches &amp; oxidation to bring back a flawless, glassy finish.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon">🛡️</div>
+        <h3>Ceramic Coating</h3>
+        <p>Long-lasting protection &amp; deep gloss that shields your paint for years.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon">🌬️</div>
+        <h3>Odor Removal</h3>
+        <p>Eliminate smoke, pet &amp; food odors at the source — not just cover them up.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon">🧼</div>
+        <h3>Interior Deep Clean</h3>
+        <p>Shampoo, steam &amp; extraction for spotless seats, carpets &amp; every crevice.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card__icon">💧</div>
+        <h3>Wash &amp; Vacuum</h3>
+        <p>The perfect maintenance wash to keep your ride fresh between full details.</p>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       3. HOW IT WORKS  ("We Come to You")
+  ====================================================== -->
+  <section class="section how" id="how">
+    <div class="section__head reveal">
+      <p class="kicker">The Easy Part</p>
+      <h2>We come <span class="accent">to you.</span></h2>
+      <p class="section__lead">No drop-offs. No waiting rooms. Just a flawless car wherever you are.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step__num">1</span>
+        <h3>Book online or text</h3>
+        <p>Pick a time in seconds — online or by text. Easy.</p>
+      </div>
+      <div class="step__line" aria-hidden="true"></div>
+      <div class="step reveal">
+        <span class="step__num">2</span>
+        <h3>We come to your location</h3>
+        <p>Home, office, anywhere in the OC. We bring everything.</p>
+      </div>
+      <div class="step__line" aria-hidden="true"></div>
+      <div class="step reveal">
+        <span class="step__num">3</span>
+        <h3>Your car comes out flawless</h3>
+        <p>Sit back. We hand you back a showroom-ready ride.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       4. SERVICE AREA
+  ====================================================== -->
+  <section class="section area" id="area">
+    <div class="area__inner reveal">
+      <p class="kicker">Where We Roll</p>
+      <h2>Proudly serving <span class="accent">Huntington Beach</span><br />&amp; all of Orange County</h2>
+      <ul class="area__cities">
+        <li>Huntington Beach</li>
+        <li>Newport Beach</li>
+        <li>Costa Mesa</li>
+        <li>Irvine</li>
+        <li>Fountain Valley</li>
+        <li>Westminster</li>
+        <li>Santa Ana</li>
+      </ul>
+      <p class="area__note">Not on the list? Text us — if you're in the OC, we've probably got you.</p>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       5. GALLERY / OUR WORK
+  ====================================================== -->
+  <section class="section gallery" id="gallery">
+    <div class="section__head reveal">
+      <p class="kicker">Our Work</p>
+      <h2>The cars speak <span class="accent">for us.</span></h2>
+      <p class="section__lead">A few of the rides we've had the pleasure of making shine.</p>
+    </div>
+
+    <div class="grid">
+      <figure class="grid__item grid__item--tall reveal">
+        <img src="images/urus.png" alt="Detailed white Lamborghini Urus" loading="lazy" />
+        <figcaption>Lamborghini Urus</figcaption>
+      </figure>
+      <figure class="grid__item reveal">
+        <img src="images/brz.png" alt="Detailed white Subaru BRZ" loading="lazy" />
+        <figcaption>Subaru BRZ</figcaption>
+      </figure>
+      <figure class="grid__item reveal">
+        <img src="images/defender.png" alt="Detailed silver Land Rover Defender" loading="lazy" />
+        <figcaption>Land Rover Defender</figcaption>
+      </figure>
+      <figure class="grid__item grid__item--wide reveal">
+        <img src="images/urus2.png" alt="Lamborghini Urus front detail" loading="lazy" />
+        <figcaption>Lamborghini Urus</figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       6. REVIEWS
+  ====================================================== -->
+  <section class="section reviews" id="reviews">
+    <div class="section__head reveal">
+      <p class="kicker">Don't Take Our Word</p>
+      <h2>5 stars, <span class="accent">every time.</span></h2>
+    </div>
+
+    <div class="reviews__grid">
+      <article class="review reveal">
+        <div class="review__stars">★★★★★</div>
+        <p class="review__text">"Don't let these 2 young brothers fool you. Alex and his brother are TOP notch... extremely meticulous, show up on time, extremely professional and polite."</p>
+        <p class="review__name">— David Vu</p>
+      </article>
+      <article class="review reveal">
+        <div class="review__stars">★★★★★</div>
+        <p class="review__text">"Alex did an awesome job! Very thorough... made it look spotless. On time, professional, and affordable. Would definitely hire again!"</p>
+        <p class="review__name">— Maribel Fernandez</p>
+      </article>
+      <article class="review reveal">
+        <div class="review__stars">★★★★★</div>
+        <p class="review__text">"Alex and Eric not only fit us into their schedule, but took care of tiny details. We will only use this company from now on!"</p>
+        <p class="review__name">— Leslie Cannata</p>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       7. PAYMENT / TRUST
+  ====================================================== -->
+  <section class="section payment" id="payment">
+    <div class="payment__inner reveal">
+      <p class="kicker">Easy &amp; Flexible</p>
+      <h2>Pay your <span class="accent">way.</span></h2>
+      <ul class="payment__methods">
+        <li>Visa</li>
+        <li>Mastercard</li>
+        <li>Amex</li>
+        <li>Discover</li>
+        <li>Cash</li>
+        <li>Afterpay</li>
+        <li>Contactless</li>
+      </ul>
+      <p class="payment__note">
+        <span class="payment__deposit">$25 non-refundable deposit</span> required to hold your spot.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       8. BOOKING / CONTACT (CTA)
+  ====================================================== -->
+  <section class="section contact" id="contact">
+    <div class="contact__inner reveal">
+      <p class="kicker">Ready When You Are</p>
+      <h2>Let's make it <span class="accent">shine.</span></h2>
+      <p class="contact__lead">Book online, give us a call, or shoot us a text. We'll bring the detail shop to your driveway.</p>
+
+      <div class="contact__cta">
+        <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Book Now</a>
+        <a href="tel:+17142046270" class="btn btn--outline btn--lg">Call (714) 204-6270</a>
+      </div>
+
+      <a href="https://instagram.com/lezamabros.autodetail" target="_blank" rel="noopener" class="contact__ig">
+        <span class="contact__ig-icon">📷</span> @lezamabros.autodetail
+      </a>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+  <footer class="footer">
+    <div class="footer__brand">LEZAMA BROS <span>AUTO DETAIL</span></div>
+    <p class="footer__tag">Restore | Maintain | Shine</p>
+    <p class="footer__meta">Huntington Beach, CA · Serving all of Orange County · Owner operated by Alex &amp; Eric</p>
+    <p class="footer__copy">© 2026 Lezama Bros Auto Detail. All rights reserved.</p>
+  </footer>
+
+
+  <!-- =====================================================
+       STICKY MOBILE "TEXT TO BOOK" BUTTON
+  ====================================================== -->
+  <a href="sms:+17142046270" class="sticky-text">
+    <span class="sticky-text__icon">💬</span> Text to Book
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
