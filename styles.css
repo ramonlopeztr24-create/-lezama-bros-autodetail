@@ -167,29 +167,28 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; }
    3. SERVICES — big minimal rows
    ============================================================ */
 .srv { list-style: none; border-top: 1px solid var(--hair); }
-.srv__row { display: grid; grid-template-columns: 60px 1.1fr 1.4fr 40px; align-items: center; gap: 20px; padding: clamp(22px,3vw,34px) 6px; border-bottom: 1px solid var(--hair); transition: padding-left 0.35s var(--ease), background 0.35s; }
-.srv__row:hover { padding-left: 24px; background: rgba(255,255,255,0.025); }
-.srv__idx { font-size: 0.85rem; font-weight: 700; color: var(--gray-2); }
-.srv__name { font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; }
-.srv__desc { color: var(--gray); font-size: 1rem; }
-.srv__arrow { font-size: 1.5rem; color: var(--gray-2); transform: translateX(-6px); opacity: 0; transition: transform 0.35s var(--ease), opacity 0.35s, color 0.35s; justify-self: end; }
-.srv__row:hover .srv__arrow { transform: translateX(0); opacity: 1; color: var(--cyan); }
-.srv:hover .srv__row:not(:hover) .srv__name { opacity: 0.35; } /* dim the others on hover */
-.srv__name { transition: opacity 0.3s var(--ease); }
-
-/* floating cursor-following image preview */
-.srv__preview {
-  position: fixed; top: 0; left: 0; z-index: 80;
-  width: 300px; height: 210px; border-radius: 14px; overflow: hidden;
-  pointer-events: none; opacity: 0;
-  transform: translate(-50%, -50%) scale(0.85) rotate(-3deg);
-  transition: opacity 0.3s var(--ease), transform 0.45s var(--ease);
-  box-shadow: 0 34px 70px -22px rgba(0,0,0,0.75); border: 1px solid var(--hair);
-  will-change: transform, left, top;
-}
-.srv__preview.show { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-.srv__preview img { width: 100%; height: 100%; object-fit: cover; }
-@media (max-width: 760px) { .srv__row { grid-template-columns: 40px 1fr 28px; } .srv__desc { display: none; } .srv__preview { display: none; } }
+.srv__row { position: relative; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: 60px 1.1fr 1.4fr 40px; align-items: center; gap: 20px; padding: clamp(22px,3vw,34px) 18px; border-bottom: 1px solid var(--hair); }
+/* cyan fill that wipes across the row on hover */
+.srv__row::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--cyan); transform: translateX(-101%); transition: transform 0.5s var(--ease); }
+.srv__row:hover::before { transform: translateX(0); }
+.srv__idx { font-size: 0.85rem; font-weight: 700; color: var(--gray-2); transition: color 0.4s var(--ease); }
+.srv__name { font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; transition: color 0.4s var(--ease), transform 0.5s var(--ease); }
+.srv__desc { color: var(--gray); font-size: 1rem; transition: color 0.4s var(--ease); }
+.srv__arrow { font-size: 1.5rem; color: var(--gray-2); transform: translateX(-6px); opacity: 0; transition: transform 0.4s var(--ease), opacity 0.4s, color 0.4s; justify-self: end; }
+/* on hover: text inverts to dark over the cyan, name nudges right, arrow appears */
+.srv__row:hover .srv__idx,
+.srv__row:hover .srv__desc { color: rgba(4,35,34,0.7); }
+.srv__row:hover .srv__name { color: #042322; transform: translateX(10px); }
+.srv__row:hover .srv__arrow { transform: translateX(0); opacity: 1; color: #042322; }
+/* staggered cascade entrance */
+.srv__row.reveal { transition-duration: 0.7s; }
+.srv__row:nth-child(1) { transition-delay: 0s; }
+.srv__row:nth-child(2) { transition-delay: 0.07s; }
+.srv__row:nth-child(3) { transition-delay: 0.14s; }
+.srv__row:nth-child(4) { transition-delay: 0.21s; }
+.srv__row:nth-child(5) { transition-delay: 0.28s; }
+.srv__row:nth-child(6) { transition-delay: 0.35s; }
+@media (max-width: 760px) { .srv__row { grid-template-columns: 40px 1fr 28px; padding-left: 10px; padding-right: 10px; } .srv__desc { display: none; } }
 
 
 /* ============================================================

@@ -225,42 +225,6 @@ if (beadCanvas && beadStage && !reduceMotion) {
 }
 
 
-/* ------------------------------------------------------------
-   SERVICES — floating image that follows the cursor over each row
------------------------------------------------------------- */
-const srvPreview = document.getElementById("srvPreview");
-const srvRows = Array.from(document.querySelectorAll(".srv__row"));
-const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-if (srvPreview && srvRows.length && finePointer && !reduceMotion) {
-  const pimg = srvPreview.querySelector("img");
-  let tx = 0, ty = 0, cx = 0, cy = 0, visible = false;
-
-  srvRows.forEach((row) => {
-    row.addEventListener("mouseenter", () => {
-      const src = row.dataset.img;
-      if (src && pimg.getAttribute("src") !== src) pimg.src = src;
-      srvPreview.classList.add("show");
-      visible = true;
-    });
-    row.addEventListener("mouseleave", () => {
-      srvPreview.classList.remove("show");
-      visible = false;
-    });
-  });
-
-  window.addEventListener("pointermove", (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
-
-  const follow = () => {
-    // ease toward the cursor for a smooth, premium lag
-    cx += (tx - cx) * 0.16;
-    cy += (ty - cy) * 0.16;
-    if (visible) { srvPreview.style.left = cx + "px"; srvPreview.style.top = cy + "px"; }
-    requestAnimationFrame(follow);
-  };
-  follow();
-}
-
-
 /* ------------------------------------------------------------ GIANT WORDMARK FIT */
 const wordmark = document.querySelector(".foot__wordmark");
 if (wordmark) {
