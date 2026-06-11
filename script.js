@@ -142,7 +142,7 @@ const sqHint = document.getElementById("squeegeeHint");
 const steps = Array.from(document.querySelectorAll(".step"));
 const desktopProc = window.matchMedia("(min-width: 881px)").matches;
 
-if (proc && squeegee && desktopProc && !reduceMotion) {
+if (proc && squeegee && !reduceMotion) {
   const ctx = sprayCanvas.getContext("2d");
   let w, h, dpr;
   const drops = [], foam = [];
@@ -172,24 +172,60 @@ if (proc && squeegee && desktopProc && !reduceMotion) {
   };
   draw();
 
-  let activeIdx = -1, hintGone = false;
-  const onProc = () => {
-    const rect = proc.getBoundingClientRect();
-    const scrollable = proc.offsetHeight - window.innerHeight;
-    const progress = clamp(-rect.top / scrollable, 0, 1);
-    wipe = progress * 100;
-    squeegee.style.setProperty("--wipe", wipe + "%");
-    if (!hintGone && progress > 0.04) { hintGone = true; sqHint?.classList.add("hide"); }
-    const idx = clamp(Math.floor(progress * 4), 0, 3);
-    if (idx !== activeIdx) { activeIdx = idx; steps.forEach((s, i) => s.classList.toggle("active", i === idx)); }
-  };
-  window.addEventListener("scroll", onProc, { passive: true });
-  window.addEventListener("resize", onProc, { passive: true });
-  onProc();
+  const setStep = (idx) => steps.forEach((s, i) => s.classList.toggle("active", i === idx));
+
+  if (desktopProc) {
+    // desktop: the wipe follows scroll through the tall pinned section
+    let activeIdx = -1, hintGone = false;
+    const onProc = () => {
+      const rect = proc.getBoundingClientRect();
+      const scrollable = proc.offsetHeight - window.innerHeight;
+      const progress = clamp(-rect.top / scrollable, 0, 1);
+      wipe = progress * 100;
+      squeegee.style.setProperty("--wipe", wipe + "%");
+      if (!hintGone && progress > 0.04) { hintGone = true; sqHint?.classList.add("hide"); }
+      const idx = clamp(Math.floor(progress * 4), 0, 3);
+      if (idx !== activeIdx) { activeIdx = idx; setStep(idx); }
+    };
+    window.addEventListener("scroll", onProc, { passive: true });
+    window.addEventListener("resize", onProc, { passive: true });
+    onProc();
+  } else {
+    // mobile: auto-play the mud wash-off once when it scrolls into view
+    sqHint?.classList.add("hide");
+    let played = false;
+    const playReveal = () => {
+      if (played) return; played = true;
+      const startT = performance.now(), dur = 3200;
+      const tick = (now) => {
+        const p = Math.min((now - startT) / dur, 1);
+        wipe = (1 - Math.pow(1 - p, 2)) * 100;
+        squeegee.style.setProperty("--wipe", wipe + "%");
+        setStep(clamp(Math.floor(p * 4), 0, 3));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    new IntersectionObserver((e) => { if (e[0].isIntersecting) playReveal(); }, { threshold: 0.4 }).observe(squeegee);
+  }
 } else {
   squeegee?.style.setProperty("--wipe", "100%");
   sqHint?.classList.add("hide");
   steps.forEach((s) => s.classList.add("active"));
+}
+
+
+/* ------------------------------------------------------------
+   SERVICES (touch) — light up the row crossing the screen's middle
+   so the cyan fill works on phones (no hover there).
+------------------------------------------------------------ */
+{
+  // class is added on all devices; CSS only paints it on touch screens (hover:none)
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((en) => en.target.classList.toggle("is-active", en.isIntersecting)),
+    { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+  );
+  document.querySelectorAll(".srv__row").forEach((r) => io.observe(r));
 }
 
 
