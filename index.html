@@ -38,7 +38,7 @@
 
 
   <!-- =====================================================
-       1. HERO  (light, minimal, giant type + drag-to-clean)
+       1. HERO  — wash-reveal + shine + 3D parallax (Defender)
   ====================================================== -->
   <section class="hero" id="hero">
     <div class="hero__head">
@@ -51,25 +51,22 @@
         Premium detailing that comes to you — home, office, anywhere in the OC.
         We pull up. Your car shines.
       </p>
+      <div class="hero__cta">
+        <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--dark btn--lg">Book Now</a>
+        <a href="sms:+17142046270" class="btn btn--ghost btn--lg">Text Us</a>
+      </div>
     </div>
 
-    <!-- drag-to-clean centerpiece — REAL before/after (Audi Q7 interior) -->
-    <div class="hero__stage">
-      <div class="ba ba--real" id="ba">
-        <div class="ba__layer ba__clean">
-          <img src="images/audi-clean.png" alt="Spotless detailed Audi Q7 interior" />
+    <!-- 3D parallax showcar with wash-reveal + shine sweep -->
+    <div class="hero__stage" id="heroStage">
+      <figure class="showcar reveal-start" id="showcar">
+        <div class="showcar__frame">
+          <img class="showcar__img" src="images/defender.png" alt="Freshly detailed Land Rover Defender" />
+          <div class="showcar__shine" aria-hidden="true"></div>
+          <div class="showcar__gloss" aria-hidden="true"></div>
         </div>
-        <div class="ba__layer ba__dirty" id="baDirty">
-          <img src="images/audi-dirty.png" alt="Filthy car interior before detailing" />
-        </div>
-        <span class="ba__tag ba__tag--before">Before</span>
-        <span class="ba__tag ba__tag--after">After</span>
-        <div class="ba__handle" id="baHandle">
-          <div class="ba__line"></div>
-          <button class="ba__grip" aria-label="Drag to clean the car"><span>‹</span><span>›</span></button>
-        </div>
-      </div>
-      <p class="hero__hint" id="baHint">Drag to detail it yourself</p>
+        <figcaption class="showcar__cap">Land&nbsp;Rover Defender · Full Detail + Ceramic</figcaption>
+      </figure>
     </div>
 
     <a href="#process" class="hero__scrollcue">Scroll to see our process <span>↓</span></a>
@@ -77,22 +74,20 @@
 
 
   <!-- =====================================================
-       2. PROCESS  (dark, scroll-driven sticky narrative)
-       The car cleans itself as you scroll; steps 01–04 advance.
+       2. PROCESS  — squeegee reveal on scroll (BRZ) + steps
   ====================================================== -->
   <section class="process" id="process">
     <div class="process__sticky">
       <div class="process__inner">
 
-        <!-- pinned visual: auto-cleans with scroll -->
+        <!-- pinned visual: squeegee wipes fog away as you scroll -->
         <div class="process__visual">
-          <div class="ba ba--auto ba--real" id="baAuto">
-            <div class="ba__layer ba__clean"><img src="images/audi-clean.png" alt="Spotless Audi Q7 interior" /></div>
-            <div class="ba__layer ba__dirty" id="baAutoDirty">
-              <img src="images/audi-dirty.png" alt="Filthy Audi Q7 interior before detailing" />
-            </div>
-            <span class="ba__tag ba__tag--before">Before</span>
-            <span class="ba__tag ba__tag--after">After</span>
+          <div class="squeegee" id="squeegee">
+            <img class="squeegee__img" src="images/brz.png" alt="Freshly detailed Subaru BRZ" />
+            <div class="squeegee__fog" id="squeegeeFog" aria-hidden="true"></div>
+            <div class="squeegee__blade" id="squeegeeBlade" aria-hidden="true"></div>
+            <canvas class="squeegee__spray" id="squeegeeSpray" aria-hidden="true"></canvas>
+            <span class="squeegee__hint" id="squeegeeHint">Scroll ↓</span>
           </div>
         </div>
 
@@ -135,48 +130,39 @@
     </div>
 
     <ul class="srv">
-      <li class="srv__row reveal">
-        <span class="srv__idx">01</span>
-        <span class="srv__name">Full Detail</span>
-        <span class="srv__desc">Top-to-bottom reset, inside and out.</span>
-        <span class="srv__arrow">→</span>
-      </li>
-      <li class="srv__row reveal">
-        <span class="srv__idx">02</span>
-        <span class="srv__name">Paint Correction</span>
-        <span class="srv__desc">Swirls &amp; scratches buffed to glass.</span>
-        <span class="srv__arrow">→</span>
-      </li>
-      <li class="srv__row reveal">
-        <span class="srv__idx">03</span>
-        <span class="srv__name">Ceramic Coating</span>
-        <span class="srv__desc">Years of gloss &amp; protection.</span>
-        <span class="srv__arrow">→</span>
-      </li>
-      <li class="srv__row reveal">
-        <span class="srv__idx">04</span>
-        <span class="srv__name">Odor Removal</span>
-        <span class="srv__desc">Smoke, pets, funk — gone at the source.</span>
-        <span class="srv__arrow">→</span>
-      </li>
-      <li class="srv__row reveal">
-        <span class="srv__idx">05</span>
-        <span class="srv__name">Interior Deep Clean</span>
-        <span class="srv__desc">Steam, shampoo &amp; extraction.</span>
-        <span class="srv__arrow">→</span>
-      </li>
-      <li class="srv__row reveal">
-        <span class="srv__idx">06</span>
-        <span class="srv__name">Wash &amp; Vacuum</span>
-        <span class="srv__desc">The perfect maintenance refresh.</span>
-        <span class="srv__arrow">→</span>
-      </li>
+      <li class="srv__row reveal"><span class="srv__idx">01</span><span class="srv__name">Full Detail</span><span class="srv__desc">Top-to-bottom reset, inside and out.</span><span class="srv__arrow">→</span></li>
+      <li class="srv__row reveal"><span class="srv__idx">02</span><span class="srv__name">Paint Correction</span><span class="srv__desc">Swirls &amp; scratches buffed to glass.</span><span class="srv__arrow">→</span></li>
+      <li class="srv__row reveal"><span class="srv__idx">03</span><span class="srv__name">Ceramic Coating</span><span class="srv__desc">Years of gloss &amp; protection.</span><span class="srv__arrow">→</span></li>
+      <li class="srv__row reveal"><span class="srv__idx">04</span><span class="srv__name">Odor Removal</span><span class="srv__desc">Smoke, pets, funk — gone at the source.</span><span class="srv__arrow">→</span></li>
+      <li class="srv__row reveal"><span class="srv__idx">05</span><span class="srv__name">Interior Deep Clean</span><span class="srv__desc">Steam, shampoo &amp; extraction.</span><span class="srv__arrow">→</span></li>
+      <li class="srv__row reveal"><span class="srv__idx">06</span><span class="srv__name">Wash &amp; Vacuum</span><span class="srv__desc">The perfect maintenance refresh.</span><span class="srv__arrow">→</span></li>
     </ul>
   </section>
 
 
   <!-- =====================================================
-       4. GALLERY  (light, minimal grid)
+       4. CERAMIC  — hydrophobic water beading demo (Urus)
+  ====================================================== -->
+  <section class="ceramic" id="ceramic">
+    <div class="ceramic__inner">
+      <div class="ceramic__text reveal">
+        <p class="kicker kicker--light">Ceramic Coating</p>
+        <h2 class="ceramic__h2">Water doesn't<br />stand a chance.</h2>
+        <p class="ceramic__lead">Our ceramic coating locks in a deep gloss and makes your paint hydrophobic — water just beads up and rolls right off. Less washing, more shine, for years.</p>
+        <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="btn btn--cyan btn--lg">Protect my car</a>
+      </div>
+      <div class="ceramic__visual reveal">
+        <div class="beadstage" id="beadstage">
+          <img src="images/urus.png" alt="Ceramic coated Lamborghini Urus, water beading off" />
+          <canvas class="beadstage__drops" id="beadDrops" aria-hidden="true"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       5. GALLERY  (light, minimal grid)
   ====================================================== -->
   <section class="section gallery" id="gallery">
     <div class="section__head section__head--row">
@@ -209,7 +195,7 @@
 
 
   <!-- =====================================================
-       5. REVIEWS  (light, big quotes)
+       6. REVIEWS  (light, big quotes)
   ====================================================== -->
   <section class="section reviews" id="reviews">
     <div class="section__head">
@@ -238,7 +224,7 @@
 
 
   <!-- =====================================================
-       6. AREA + PAYMENT (light, compact band)
+       7. AREA + PAYMENT
   ====================================================== -->
   <section class="section band" id="area">
     <div class="band__col reveal">
@@ -262,7 +248,7 @@
 
 
   <!-- =====================================================
-       7. FOOTER  (dark, big link rows + GIANT wordmark)
+       8. FOOTER  (dark, big link rows + GIANT wordmark)
   ====================================================== -->
   <footer class="foot" id="contact">
     <div class="foot__cta">
@@ -271,18 +257,10 @@
     </div>
 
     <div class="foot__links">
-      <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="foot__link">
-        <span>Book Now</span><span class="foot__arrow">→</span>
-      </a>
-      <a href="tel:+17142046270" class="foot__link">
-        <span>Call (714) 204-6270</span><span class="foot__arrow">→</span>
-      </a>
-      <a href="sms:+17142046270" class="foot__link">
-        <span>Text Us</span><span class="foot__arrow">→</span>
-      </a>
-      <a href="https://instagram.com/lezamabros.autodetail" target="_blank" rel="noopener" class="foot__link">
-        <span>Instagram</span><span class="foot__arrow">→</span>
-      </a>
+      <a href="https://lezama-brosautodetail.square.site" target="_blank" rel="noopener" class="foot__link"><span>Book Now</span><span class="foot__arrow">→</span></a>
+      <a href="tel:+17142046270" class="foot__link"><span>Call (714) 204-6270</span><span class="foot__arrow">→</span></a>
+      <a href="sms:+17142046270" class="foot__link"><span>Text Us</span><span class="foot__arrow">→</span></a>
+      <a href="https://instagram.com/lezamabros.autodetail" target="_blank" rel="noopener" class="foot__link"><span>Instagram</span><span class="foot__arrow">→</span></a>
     </div>
 
     <div class="foot__wordmark" aria-hidden="true">LEZAMA BROS</div>
